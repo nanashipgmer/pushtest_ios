@@ -58,7 +58,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        if application.applicationState == .Active {
+            if let aps = userInfo["aps"] as? NSDictionary {
+                if let alert = aps["alert"] as? String {
+                    let alert = UIAlertController(title: alert, message: nil, preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 
 }
 

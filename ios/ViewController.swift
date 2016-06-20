@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     // 5. テーブルに表示するテキスト
-    let texts = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    var texts:[String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,5 +50,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print(texts[indexPath.row])
     }
     
+    @IBAction func touchButton(sender: AnyObject) {
+        print("fuga")
+        
+        // アイテムを追加
+        texts.append("hoge")
+        
+        // TableView読み込み
+        tableView.reloadData()
+    }
 }
-
