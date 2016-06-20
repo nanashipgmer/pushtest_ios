@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		3650FCD70449D21712322999 /* Pods-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		5E9932CEE72114A2A72D23F2 /* Pods-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.release.xcconfig"; sourceTree = "<group>"; };
-		CEBBEF301D138C3100D8F1F9 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEBBEF301D138C3100D8F1F9 /* プッシュ通知.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "プッシュ通知.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBBEF331D138C3100D8F1F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEBBEF351D138C3100D8F1F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEBBEF381D138C3100D8F1F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		CEBBEF271D138C3100D8F1F9 = {
 			isa = PBXGroup;
 			children = (
-				CEBBEF321D138C3100D8F1F9 /* ios */,
+				CEBBEF321D138C3100D8F1F9 /* プッシュ通知 */,
 				CEBBEF311D138C3100D8F1F9 /* Products */,
 				50751993D67073EAA64B8DA9 /* Pods */,
 				DF1EF57BA8D66EA5DD88281F /* Frameworks */,
@@ -61,12 +61,12 @@
 		CEBBEF311D138C3100D8F1F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEBBEF301D138C3100D8F1F9 /* ios.app */,
+				CEBBEF301D138C3100D8F1F9 /* プッシュ通知.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CEBBEF321D138C3100D8F1F9 /* ios */ = {
+		CEBBEF321D138C3100D8F1F9 /* プッシュ通知 */ = {
 			isa = PBXGroup;
 			children = (
 				CEBBEF331D138C3100D8F1F9 /* AppDelegate.swift */,
@@ -77,6 +77,7 @@
 				CEBBEF3F1D138C3100D8F1F9 /* Info.plist */,
 				CEFBA1101D139DD300B90F19 /* GoogleService-Info.plist */,
 			);
+			name = "プッシュ通知";
 			path = ios;
 			sourceTree = "<group>";
 		};
@@ -90,9 +91,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CEBBEF2F1D138C3100D8F1F9 /* ios */ = {
+		CEBBEF2F1D138C3100D8F1F9 /* プッシュ通知 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEBBEF421D138C3100D8F1F9 /* Build configuration list for PBXNativeTarget "ios" */;
+			buildConfigurationList = CEBBEF421D138C3100D8F1F9 /* Build configuration list for PBXNativeTarget "プッシュ通知" */;
 			buildPhases = (
 				FEE92D285F2093288A065A7B /* [CP] Check Pods Manifest.lock */,
 				CEBBEF2C1D138C3100D8F1F9 /* Sources */,
@@ -105,9 +106,9 @@
 			);
 			dependencies = (
 			);
-			name = ios;
+			name = "プッシュ通知";
 			productName = ios;
-			productReference = CEBBEF301D138C3100D8F1F9 /* ios.app */;
+			productReference = CEBBEF301D138C3100D8F1F9 /* プッシュ通知.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -134,7 +135,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CEBBEF2B1D138C3100D8F1F9 /* Build configuration list for PBXProject "ios" */;
+			buildConfigurationList = CEBBEF2B1D138C3100D8F1F9 /* Build configuration list for PBXProject "プッシュ通知" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -147,7 +148,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CEBBEF2F1D138C3100D8F1F9 /* ios */,
+				CEBBEF2F1D138C3100D8F1F9 /* プッシュ通知 */,
 			);
 		};
 /* End PBXProject section */
@@ -339,7 +340,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourapp.ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "プッシュ通知";
 			};
 			name = Debug;
 		};
@@ -353,14 +354,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourapp.ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "プッシュ通知";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CEBBEF2B1D138C3100D8F1F9 /* Build configuration list for PBXProject "ios" */ = {
+		CEBBEF2B1D138C3100D8F1F9 /* Build configuration list for PBXProject "プッシュ通知" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEBBEF401D138C3100D8F1F9 /* Debug */,
@@ -369,7 +370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEBBEF421D138C3100D8F1F9 /* Build configuration list for PBXNativeTarget "ios" */ = {
+		CEBBEF421D138C3100D8F1F9 /* Build configuration list for PBXNativeTarget "プッシュ通知" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEBBEF431D138C3100D8F1F9 /* Debug */,
