@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
+        // 受信したメッセージをポップアップで表示
         if application.applicationState == .Active {
             if let aps = userInfo["aps"] as? NSDictionary {
                 if let alert = aps["alert"] as? String {
@@ -71,7 +72,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        let fileName = "data.txt"   // ファイル名
+        let text = "sample" // 保存する内容
+        //let text = alert // 保存する内容
+        
+        // ファイル書き込み
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            
+            let pathFileName = dir.stringByAppendingPathComponent(fileName)
+            do {
+                try text.writeToFile(pathFileName, atomically: false, encoding: NSUTF8StringEncoding)
+            } catch {
+                // エラー処理
+            }
+        }
+        
+        // ファイル読み込み
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            
+            let pathFileName = dir.stringByAppendingPathComponent(fileName)
+            do {
+                let text = try NSString(contentsOfFile: pathFileName, encoding: NSUTF8StringEncoding)
+                print(text)
+            } catch {
+                // エラー処理
+            }
+        }
     }
-
 }
 
