@@ -23,7 +23,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cki-ZU-eNE">
                                 <rect key="frame" x="0.0" y="20" width="249" height="30"/>
-                                <state key="normal" title="Add"/>
+                                <state key="normal" title="履歴削除"/>
                                 <connections>
                                     <action selector="touchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jP3-J3-hXQ"/>
                                 </connections>

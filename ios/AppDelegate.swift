@@ -13,6 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var viewController: ViewController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -66,37 +67,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if application.applicationState == .Active {
             if let aps = userInfo["aps"] as? NSDictionary {
                 if let alert = aps["alert"] as? String {
+                    
+                    // ファイル名
+                    let now = NSDate()
+                    let formatter = NSDateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd_HH:mm:ss"
+                    let fileName = formatter.stringFromDate(now) + "-message.txt"
+                    let text = alert // 保存する内容
+                    
+                    // ファイル書き込み
+                    if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+                        
+                        let pathFileName = dir.stringByAppendingPathComponent(fileName)
+//                        do {
+//                            try text.writeToFile(pathFileName, atomically: false, encoding: NSUTF8StringEncoding)
+//                        } catch {
+//                            // エラー処理
+//                        }
+                        
+                        let output = NSOutputStream(toFileAtPath: pathFileName, append: true);
+                        output?.open()
+                        let cstring = text.cStringUsingEncoding(NSUTF8StringEncoding)
+                        let bytes = UnsafePointer<UInt8>(cstring!)
+                        let size = text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                        output?.write(bytes, maxLength: size)
+                        output?.close()
+                    }
+                    
+                    // ファイル読み込み
+                    if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+                        
+                        let pathFileName = dir.stringByAppendingPathComponent(fileName)
+                        do {
+                            let text = try NSString(contentsOfFile: pathFileName, encoding: NSUTF8StringEncoding)
+                            print(text)
+                        } catch {
+                            // エラー処理
+                        }
+                    }
+                    
+                    if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+                        
+                        do {
+                            let manager = NSFileManager.defaultManager()
+                            let list = try manager.contentsOfDirectoryAtPath(dir as String)
+                            print("■ファイル名")
+                            for path in list {
+                                print(path as NSString)
+                            }
+                        } catch {
+                            // エラー処理
+                        }
+                    }
+                    
                     let alert = UIAlertController(title: alert, message: nil, preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                     self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
-                }
-            }
-        }
-        
-        let fileName = "data.txt"   // ファイル名
-        let text = "sample" // 保存する内容
-        //let text = alert // 保存する内容
-        
-        // ファイル書き込み
-        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            
-            let pathFileName = dir.stringByAppendingPathComponent(fileName)
-            do {
-                try text.writeToFile(pathFileName, atomically: false, encoding: NSUTF8StringEncoding)
-            } catch {
-                // エラー処理
-            }
-        }
-        
-        // ファイル読み込み
-        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            
-            let pathFileName = dir.stringByAppendingPathComponent(fileName)
-            do {
-                let text = try NSString(contentsOfFile: pathFileName, encoding: NSUTF8StringEncoding)
-                print(text)
-            } catch {
-                // エラー処理
+                    
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.viewController?.reloadTableView()                }
             }
         }
     }

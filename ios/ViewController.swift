@@ -15,7 +15,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     // 5. テーブルに表示するテキスト
-    var texts:[String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+//    var texts:[String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    var texts:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // 4. delegateとdataSourceを設定
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // ログファイルの一覧を取得して表示
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            
+            do {
+                let manager = NSFileManager.defaultManager()
+                let list = try manager.contentsOfDirectoryAtPath(dir as String)
+                for path in list {
+                    print(path as NSString)
+                    
+                    if (path as NSString).length > 27 && (path as NSString).substringFromIndex(27) == ".txt" {
+                    
+                        let pathFileName = dir.stringByAppendingPathComponent(path)
+                        let text = try NSString(contentsOfFile: pathFileName, encoding: NSUTF8StringEncoding)
+                        texts.append(text as String)
+                    }
+                }
+                
+            } catch {
+                // エラー処理
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,11 +74,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func touchButton(sender: AnyObject) {
-        print("fuga")
+//        // アイテムを追加
+//        texts.append("hoge")
+//        
+//        // TableView読み込み
+//        tableView.reloadData()
         
-        // アイテムを追加
-        texts.append("hoge")
-        
+        // ログファイルの一覧を削除
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            
+            do {
+                let manager = NSFileManager.defaultManager()
+                let list = try manager.contentsOfDirectoryAtPath(dir as String)
+                for path in list {
+                    
+                    if (path as NSString).length > 27 && (path as NSString).substringFromIndex(27) == ".txt" {
+                        try NSFileManager().removeItemAtPath((dir as String) + "/" + path)
+                    }
+                }
+                
+            } catch {
+                // エラー処理
+            }
+        }
+    }
+    
+    func reloadTableView() {
         // TableView読み込み
         tableView.reloadData()
     }
